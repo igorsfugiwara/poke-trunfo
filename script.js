@@ -1,15 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Definindo jogadores
-    let player1 = { score: 0, hand: [] };
-    let player2 = { score: 0, hand: [] };
+class Player {
+    constructor() {
+        this.score = 0;
+        this.hand = [];
+    }
+}
 
-    // Função principal para iniciar o jogo
-    function startGame() {
-        fetchPokemons();
+class CardGame {
+    constructor() {
+        this.player1 = new Player();
+        this.player2 = new Player();
     }
 
-    // Função para buscar os dados dos pokémons
-    function fetchPokemons() {
+    startGame() {
+        this.fetchPokemons();
+    }
+
+    fetchPokemons() {
         fetch("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20")
             .then((response) => response.json())
             .then((body) => {
@@ -35,55 +41,48 @@ document.addEventListener("DOMContentLoaded", function () {
                         })
                 );
 
-                // Aguarda todas as requisições concluírem
                 return Promise.all(requests);
             })
             .then((responses) => {
-                initializeGame(responses);
+                this.initializeGame(responses);
             })
             .catch((error) => {
                 console.error("Erro na requisição principal:", error);
             });
     }
 
-    // Função para inicializar o jogo com cartas embaralhadas
-    function initializeGame(responses) {
-        const gamersDeck = shuffle(responses);
+    initializeGame(responses) {
+        const gamersDeck = this.shuffle(responses);
 
         gamersDeck.forEach((card, index) => {
-            index % 2 === 0 ? player1.hand.push(card) : player2.hand.push(card);
+            index % 2 === 0 ? this.player1.hand.push(card) : this.player2.hand.push(card);
         });
 
-        console.log("Cartas do Jogador 1:", player1.hand);
-        console.log("Cartas do Jogador 2:", player2.hand);
+        console.log("Cartas do Jogador 1:", this.player1.hand);
+        console.log("Cartas do Jogador 2:", this.player2.hand);
 
-        // Renderiza as mãos dos jogadores nos containers específicos
-        renderHands(player1, player2);
+        this.renderHands();
 
-        // Adiciona listeners para os botões de atributo
-        addAttributeListeners();
+        this.addAttributeListeners();
     }
 
-    // Função para renderizar as mãos dos jogadores
-    function renderHands(player1, player2) {
-        renderHand(player1, "player1-container");
-        renderHand(player2, "player2-container");
+    renderHands() {
+        this.renderHand(this.player1, "player1-container");
+        this.renderHand(this.player2, "player2-container");
     }
 
-    // Função para renderizar a mão do jogador
-    function renderHand(player, containerId) {
+    renderHand(player, containerId) {
         const container = document.getElementById(containerId);
 
         if (container) {
             player.hand.forEach((card) => {
-                const cardElement = createCardElement(card);
+                const cardElement = this.createCardElement(card);
                 container.appendChild(cardElement);
             });
         }
     }
 
-    // Função para criar um elemento HTML representando uma carta
-    function createCardElement(card) {
+    createCardElement(card) {
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
 
@@ -105,9 +104,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const attributesElement = document.createElement("div");
             attributesElement.classList.add("card__attributes");
 
-            const weightElement = createAttributeElement("weight", `Peso: ${card[key].peso / 10}kg`);
-            const heightElement = createAttributeElement("height", `Altura: ${card[key].altura / 10}m`);
-            const movesElement = createAttributeElement(
+            const weightElement = this.createAttributeElement("weight", `Peso: ${card[key].peso / 10}kg`);
+            const heightElement = this.createAttributeElement("height", `Altura: ${card[key].altura / 10}m`);
+            const movesElement = this.createAttributeElement(
                 "moves",
                 `Quantidade de Ataques: ${card[key].qtdMovimentos}`
             );
@@ -121,48 +120,43 @@ document.addEventListener("DOMContentLoaded", function () {
             cardElement.appendChild(titleElement);
             cardElement.appendChild(attributesElement);
 
-            // Adiciona ouvintes de eventos de clique aos elementos clicáveis
-            idElement.addEventListener("click", () => compareAttribute("id", card[key].id));
-            weightElement.addEventListener("click", () => compareAttribute("peso", card[key].peso));
-            heightElement.addEventListener("click", () => compareAttribute("altura", card[key].altura));
-            movesElement.addEventListener("click", () => compareAttribute("qtdMovimentos", card[key].qtdMovimentos));
+            idElement.addEventListener("click", () => this.compareAttribute("id", card[key].id));
+            weightElement.addEventListener("click", () => this.compareAttribute("peso", card[key].peso));
+            heightElement.addEventListener("click", () => this.compareAttribute("altura", card[key].altura));
+            movesElement.addEventListener("click", () => this.compareAttribute("qtdMovimentos", card[key].qtdMovimentos));
         }
 
         return cardElement;
     }
 
-    // Função para criar um elemento de atributo clicável
-    function createAttributeElement(className, textContent) {
+    createAttributeElement(className, textContent) {
         const element = document.createElement("p");
         element.classList.add(className);
         element.textContent = textContent;
         return element;
     }
 
-    // Função para adicionar listeners aos botões de atributo
-    function addAttributeListeners() {
+    addAttributeListeners() {
         const btnWeight = document.querySelector(".weight");
         const btnHeight = document.querySelector(".height");
         const btnMoves = document.querySelector(".moves");
         const btnId = document.querySelector(".id");
         const btnClosed = document.querySelector("#close");
 
-        btnWeight.addEventListener("click", () => playRound("peso"));
-        btnHeight.addEventListener("click", () => playRound("altura"));
-        btnMoves.addEventListener("click", () => playRound("qtdMovimentos"));
-        btnId.addEventListener("click", () => playRound("id"));
+        btnWeight.addEventListener("click", () => this.playRound("peso"));
+        btnHeight.addEventListener("click", () => this.playRound("altura"));
+        btnMoves.addEventListener("click", () => this.playRound("qtdMovimentos"));
+        btnId.addEventListener("click", () => this.playRound("id"));
 
-        btnClosed.addEventListener("click", () => closeModal());
+        btnClosed.addEventListener("click", () => this.closeModal());
     }
 
-    // Função para comparar atributos clicáveis
-    function compareAttribute(attributeName, attributeValue) {
+    compareAttribute(attributeName, attributeValue) {
         console.log(`Atributo ${attributeName} clicado com valor ${attributeValue}`);
-        playRound(attributeName);
+        this.playRound(attributeName);
     }
 
-    // Função para embaralhar as cartas
-    function shuffle(array) {
+    shuffle(array) {
         let currentIndex = array.length,
             randomIndex;
 
@@ -176,99 +170,71 @@ document.addEventListener("DOMContentLoaded", function () {
         return array;
     }
 
-    // Função para comparar cartas
-    function compareCards(attribute) {
-        if (player1.hand.length === 0 || player2.hand.length === 0) {
-            // Um dos jogadores está sem cartas, encerre o jogo
-            endGame();
+    compareCards(attribute) {
+        if (this.player1.hand.length === 0 || this.player2.hand.length === 0) {
+            this.endGame();
             return;
         }
 
-        const player1Card = player1.hand[0][Object.keys(player1.hand[0])[0]][attribute];
-        const player2Card = player2.hand[0][Object.keys(player2.hand[0])[0]][attribute];
+        const player1Card = this.player1.hand[0][Object.keys(this.player1.hand[0])[0]][attribute];
+        const player2Card = this.player2.hand[0][Object.keys(this.player2.hand[0])[0]][attribute];
 
         if (player1Card > player2Card) {
-            player1.score += player1.hand.length;
+            this.player1.score += this.player1.hand.length;
             console.log("Jogador 1 venceu a rodada!");
-            // Move a carta do jogador 2 para o final do baralho do jogador 1
-            player1.hand.push(player2.hand.shift());
-            // Move a carta do jogador 1 para o final do baralho do jogador 1
-            player1.hand.push(player1.hand.shift());
+            this.player1.hand.push(this.player2.hand.shift());
+            this.player1.hand.push(this.player1.hand.shift());
         } else if (player2Card > player1Card) {
-            player2.score += player2.hand.length;
+            this.player2.score += this.player2.hand.length;
             console.log("Jogador 2 venceu a rodada!");
-            // Move a carta do jogador 1 para o final do baralho do jogador 2
-            player2.hand.push(player1.hand.shift());
-            // Move a carta do jogador 2 para o final do baralho do jogador 2
-            player2.hand.push(player2.hand.shift());
+            this.player2.hand.push(this.player1.hand.shift());
+            this.player2.hand.push(this.player2.hand.shift());
         } else {
-            // Empate - as cartas vão para a próxima rodada
-            player1.score += player1.hand.length;
-            player2.score += player2.hand.length;
+            this.player1.score += this.player1.hand.length;
+            this.player2.score += this.player2.hand.length;
             console.log("Empate! As cartas vão para a próxima rodada.");
-            // Embaralha ambas as mãos
-            player1.hand = shuffle(player1.hand);
-            player2.hand = shuffle(player2.hand);
+            this.player1.hand = this.shuffle(this.player1.hand);
+            this.player2.hand = this.shuffle(this.player2.hand);
         }
 
-        // Atualiza o placar
-        updateScore();
-
-        // Atualiza a primeira carta de cada jogador
-        updateFirstCard(player1);
-        updateFirstCard(player2);
-
-        // Limpa o layout antes de renderizar as mãos dos jogadores para a próxima rodada
-        clearLayout();
-        // Renderiza as mãos dos jogadores nos containers específicos para a próxima rodada
-        renderHands(player1, player2);
-        //Atualiza o placar
-        updateCardCount(player1.hand.length, player2.hand.length)
+        this.updateScore();
+        this.updateFirstCard(this.player1);
+        this.updateFirstCard(this.player2);
+        this.clearLayout();
+        this.renderHands();
+        this.updateCardCount(this.player1.hand.length, this.player2.hand.length);
     }
 
-    // Função para atualizar o placar
-    function updateScore() {
-        console.log(`Placar - Jogador 1: ${player1.score} | Jogador 2: ${player2.score}`);
+    updateScore() {
+        console.log(`Placar - Jogador 1: ${this.player1.score} | Jogador 2: ${this.player2.score}`);
     }
 
-    // Função para iniciar uma nova rodada
-    function playRound(attribute) {
-        compareCards(attribute);
+    playRound(attribute) {
+        this.compareCards(attribute);
+        this.updateScore();
 
-        // Atualiza o placar
-        updateScore();
-
-        // Verifica se algum jogador ficou sem cartas
-        if (player1.hand.length === 0) {
+        if (this.player1.hand.length === 0) {
             console.log("Jogador 1 está sem cartas. Jogador 2 venceu!");
-            clearLayout();
-        } else if (player2.hand.length === 0) {
+            this.clearLayout();
+        } else if (this.player2.hand.length === 0) {
             console.log("Jogador 2 está sem cartas. Jogador 1 venceu!");
-            clearLayout();
-            showVictoryModal();
+            this.clearLayout();
+            this.showVictoryModal();
         } else {
-            // Atualiza a primeira carta de cada jogador
-            updateFirstCard(player1);
-            updateFirstCard(player2);
-
-            // Limpa o layout antes de renderizar as mãos dos jogadores para a próxima rodada
-            clearLayout();
-            // Renderiza as mãos dos jogadores nos containers específicos para a próxima rodada
-            renderHands(player1, player2);
+            this.updateFirstCard(this.player1);
+            this.updateFirstCard(this.player2);
+            this.clearLayout();
+            this.renderHands();
         }
     }
 
-    // Função para encerrar o jogo
-    function endGame() {
+    endGame() {
         console.log("Jogo encerrado!");
-        // Adicione aqui qualquer lógica adicional que você deseja executar ao encerrar o jogo
     }
 
-    // Função para atualizar a primeira carta do jogador
-    function updateFirstCard(player) {
+    updateFirstCard(player) {
         if (player.hand.length > 0) {
-            // Atualiza a primeira carta do jogador com os novos dados
-            const updatedCard = fetchPokemonData(player.hand[0].name);
+            const updatedCard = this.fetchPokemonData(player.hand[0].name);
             updatedCard
                 .then((data) => {
                     player.hand[0] = data;
@@ -279,8 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Função para buscar os dados atualizados do Pokémon
-    async function fetchPokemonData(pokemonName) {
+    async fetchPokemonData(pokemonName) {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
             const data = await response.json();
@@ -298,8 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Limpa o layout removendo todas as cartas dos jogadores
-    function clearLayout() {
+    clearLayout() {
         const player1Container = document.getElementById("player1-container");
         const player2Container = document.getElementById("player2-container");
 
@@ -312,44 +276,42 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // BOTÕES DE CONTROLE - COMEÇAR, EMBARALHAR E RECOMEÇAR
+    showVictoryModal() {
+        const modal = document.getElementById('victoryModal');
+        modal.style.display = 'block';
+    }
+
+    closeModal() {
+        const modal = document.getElementById('victoryModal');
+        modal.style.display = 'none';
+    }
+
+    updateCardCount(player1Count, player2Count) {
+        const player1CardCount = document.getElementById('player1CardCount');
+        const player2CardCount = document.getElementById('player2CardCount');
+
+        player1CardCount.textContent = player1Count;
+        player2CardCount.textContent = player2Count;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cardGame = new CardGame();
+
     const btnStart = document.querySelector(".startGame");
     const btnShuffle = document.querySelector(".shuffleCards");
     const btnRestart = document.querySelector(".restartGame");
 
-    btnStart.addEventListener("click", startGame);
+    btnStart.addEventListener("click", () => cardGame.startGame());
 
-    // Evento para o botão de embaralhar
     btnShuffle.addEventListener("click", function () {
-        clearLayout(); // Limpa o layout antes de renderizar as mãos dos jogadores
-        const shuffledDeck = shuffle([...player1.hand, ...player2.hand]);
-        player1.hand = shuffledDeck.slice(0, shuffledDeck.length / 2);
-        player2.hand = shuffledDeck.slice(shuffledDeck.length / 2);
+        cardGame.clearLayout();
+        const shuffledDeck = cardGame.shuffle([...cardGame.player1.hand, ...cardGame.player2.hand]);
+        cardGame.player1.hand = shuffledDeck.slice(0, shuffledDeck.length / 2);
+        cardGame.player2.hand = shuffledDeck.slice(shuffledDeck.length / 2);
 
-        renderHands(player1, player2);
+        cardGame.renderHands();
     });
 
-    // Adiciona listeners para os botões de atributo
-    addAttributeListeners();
-
-    // Adicione esta função para exibir o modal de vitória
-function showVictoryModal() {
-    const modal = document.getElementById('victoryModal');
-    modal.style.display = 'block';
-}
-
-// Adicione esta função para fechar o modal
-function closeModal() {
-    const modal = document.getElementById('victoryModal');
-    modal.style.display = 'none';
-}
-
-// Adicione esta função para atualizar a contagem de cartas na interface
-function updateCardCount(player1Count, player2Count) {
-    const player1CardCount = document.getElementById('player1CardCount');
-    const player2CardCount = document.getElementById('player2CardCount');
-
-    player1CardCount.textContent = player1Count;
-    player2CardCount.textContent = player2Count;
-}
+    cardGame.addAttributeListeners();
 });

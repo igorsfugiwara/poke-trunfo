@@ -16,7 +16,7 @@ class CardGame {
     }
 
     fetchPokemons() {
-        fetch("https://pokeapi.co/api/v2/pokemon?offset=20&limit=20")
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=1&limit=20")
             .then((response) => response.json())
             .then((body) => {
                 const result = body.results;
@@ -62,8 +62,6 @@ class CardGame {
         console.log("Cartas do Jogador 2:", this.player2.hand);
 
         this.renderHands();
-
-        this.addAttributeListeners();
     }
 
     renderHands() {
@@ -136,18 +134,22 @@ class CardGame {
         return element;
     }
 
-    addAttributeListeners() {
+    async addAttributeListeners() {
         const btnWeight = document.querySelector(".weight");
         const btnHeight = document.querySelector(".height");
         const btnMoves = document.querySelector(".moves");
         const btnId = document.querySelector(".id");
         const btnClosed = document.querySelector("#close");
-
-        btnWeight.addEventListener("click", () => this.playRound("peso"));
-        btnHeight.addEventListener("click", () => this.playRound("altura"));
-        btnMoves.addEventListener("click", () => this.playRound("qtdMovimentos"));
-        btnId.addEventListener("click", () => this.playRound("id"));
-
+    
+        const clickHandler = async (attribute) => {
+            await this.playRound(attribute);
+        };
+    
+        btnWeight.addEventListener("click", () => clickHandler("peso"));
+        btnHeight.addEventListener("click", () => clickHandler("altura"));
+        btnMoves.addEventListener("click", () => clickHandler("qtdMovimentos"));
+        btnId.addEventListener("click", () => clickHandler("id"));
+    
         btnClosed.addEventListener("click", () => this.closeModal());
     }
 

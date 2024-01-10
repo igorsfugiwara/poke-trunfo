@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supertrunfo Pokémon</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            color: white;
+            margin: 0;
+
+        }
+
+        #game {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hand {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: #555;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background-color: #777;
+        }
+
+        .button {
+            background-color: #777;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #999;
+        }
+
+        .player-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .player-container .card {
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .player-container .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card__attributes {
+            display: none;
+        }
+
+        .card:hover .card__attributes {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="controls">
+        <button id="startGame" onclick="startGame()">Começar</button>
+        <button id="shuffleCards" onclick="shuffleCards()" disabled>Embaralhar</button>
+        <button id="restartGame" onclick="restartGame()" disabled>Reiniciar</button>
+    </div>
+    <div class="players">
+        <div id="player1-container"></div>
+        <div id="player2-container"></div>
+    </div>
+
+    <script>
+        class CardGame {
+            constructor(numCards, startId) {
+                this.cards = [];
+                this.player1 = new Player();
+                this.player2 = new Player();
+                this.currentAttribute = null;
+
+                this.fetchPokemons(numCards, startId)
+                    .then(cards => {
+                        this.cards = cards;
+                        this.startGame();
+                    })
+                    .catch(error => console.error("Erro na inicialização do jogo:", error));
+            }
+
+            async fetchPokemons(numCards, startId) {
+                const promises = [];
+                for (let i = 0; i < numCards; i++) {
+                    const card = await this.fetchPokemonData(startId + i);
+                    promises.push(card);
+                }
+                return Promise.all(promises);
+            }
+
+            async fetchPokemonData(pokemonId) {
+                try {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+                    const data = await response.json();
+                    return {
+                        nome: data.name,
+                        peso: data.weight,
+                        altura: data.height,
+                        id: data.id,
+                    };
+                } catch (error) {
+                    console.error(`Erro na requisição para Pokémon com ID ${pokemonId}:`, error);
+                    throw error;
+                }
+            }
+
+            startGame() {
+                this.shuffleCards();
+                this.player1.hand = this.cards.slice(0, this.cards.length / 2);
+                this.player2.hand = this.cards.slice(this.cards.length / 2);
+                this.player1.score = this.player2.score = this.cards.length / 2;
+                this.updateScore();
+                this.renderHands();
+            }
+
+            shuffleCards() {
+                this.player1.hand = this.shuffle(this.player1.hand);
+                this.player2.hand = this.shuffle(this.player2.hand);
+                this.currentAttribute = null;
+                this.renderHands();
+            }
+
+            compareCards() {
+                if (!this.currentAttribute) return;
+
+                const player1Card = this.player1.hand[0][this.currentAttribute];
+                const player2Card = this.player2.hand[0][this.currentAttribute];
+
+                if (player1Card > player2Card) {
+                    this.player1.score += 2;
+                    this.player1.hand.push(this.player2.hand.shift());
+                    this.player1.hand.push(this.player1.hand.shift());
+                } else if (player2Card > player1Card) {
+                    this.player2.score += 2;
+                    this.player2.hand.push(this.player1.hand.shift());
+                    this.player2.hand.push(this.player2.hand.shift());
+                } else {
+                    this.player1.hand.push(this.player1.hand.shift());
+                    this.player2.hand.push(this.player2.hand.shift());
+                }
+
+                this.updateScore();
+                this.currentAttribute = null;
+                this.renderHands();
+
+                if (this.player1.hand.length === 0 || this.player2.hand.length === 0) {
+                    this.endGame();
+                }
+            }
+
+            updateScore() {
+                console.log(`Placar - Jogador 1: ${this.player1.score} | Jogador 2: ${this.player2.score}`);
+            }
+
+            renderHands() {
+                this.renderHand(this.player1, "player1-container");
+                this.renderHand(this.player2, "player2-container");
+            }
+
+            renderHand(player, containerId) {
+                const container = document.getElementById(containerId);
+
+                if (container) {
+                    // Limpa o conteúdo atual do container
+                    container.innerHTML = "";
+
+                    player.hand.forEach((card) => {
+                        const cardElement = this.createCardElement(card, player === this.player1);
+                        container.appendChild(cardElement);
+                    });
+                }
+            }
+
+            createCardElement(card, isPlayer1) {
+                const cardElement = document.createElement("div");
+                cardElement.classList.add("card");
+
+                const nameElement = document.createElement("p");
+                nameElement.textContent = isPlayer1 ? "Carta do Jogador 1" : "Carta do Jogador 2";
+                cardElement.appendChild(nameElement);
+
+                const idElement = document.createElement("p");
+                idElement.textContent = `ID: ${card.id}`;
+                cardElement.appendChild(idElement);
+
+                const weightElement = document.createElement("p");
+                weightElement.textContent = `Peso: ${card.peso}`;
+                cardElement.appendChild(weightElement);
+
+                const heightElement = document.createElement("p");
+                heightElement.textContent = `Altura: ${card.altura}`;
+                cardElement.appendChild(heightElement);
+
+                if (!isPlayer1) {
+                    // Adiciona evento de clique na carta do oponente
+                    cardElement.addEventListener("click", () => this.showOpponentCard());
+                }
+
+                return cardElement;
+            }
+
+            showOpponentCard() {
+                // Lógica para exibir a primeira carta do jogador 1 no final do turno
+                this.currentAttribute = "altura"; // Substitua por lógica real de escolha de atributo
+                this.compareCards();
+            }
+
+            shuffle(array) {
+                let currentIndex = array.length,
+                    randomIndex;
+
+                while (currentIndex > 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+
+                    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+                }
+
+                return array;
+            }
+
+            endGame() {
+                const winner = this.player1.hand.length === 0 ? "Jogador 2" : "Jogador 1";
+                console.log(`Jogo encerrado! ${winner} venceu!`);
+            }
+        }
+
+        class Player {
+            constructor() {
+                this.hand = [];
+                this.score = 0;
+            }
+        }
+
+        // Função para iniciar o jogo
+        function startGame() {
+            const numCards = 20; // Número padrão de cartas
+            const startId = 1; // ID inicial padrão dos pokémons
+            game = new CardGame(numCards, startId);
+            document.getElementById("shuffleCards").disabled = false;
+            document.getElementById("restartGame").disabled = false;
+        }
+
+        // Função para embaralhar as cartas
+        function shuffleCards() {
+            game.shuffleCards();
+        }
+
+        // Função para reiniciar o jogo
+        function restartGame() {
+            // Zera os pontos dos jogadores
+            game.player1.score = 0;
+            game.player2.score = 0;
+
+            // Embaralha todas as cartas
+            game.shuffleCards();
+
+            // Distribui as cartas para ambos os jogadores
+            game.startGame();
+
+            // Atualiza o placar na interface
+            game.updateScore();
+        }
+
+        // Adiciona listeners para os botões de controle
+        const btnStart = document.querySelector(".startGame");
+        const btnShuffle = document.querySelector(".shuffleCards");
+        const btnRestart = document.querySelector(".restartGame");
+
+        btnStart.addEventListener("click", function () {
+            const numCards = 20; // Número padrão de cartas
+            const startingId = 1; // ID inicial padrão dos pokémons
+            game = new CardGame(numCards, startingId);
+            restartGame();
+        });
+
+        btnShuffle.addEventListener("click", function () {
+            if (game.isGameTied()) {
+                game.shuffleHands();
+                renderHands();
+            } else {
+                alert("Você só pode embaralhar as cartas quando o jogo estiver empatado.");
+            }
+        });
+
+        btnRestart.addEventListener("click", restartGame);
+        // Adiciona listeners para os botões de atributo
+        function addAttributeListeners() {
+            const btnWeight = document.querySelector(".weight");
+            const btnHeight = document.querySelector(".height");
+            const btnMoves = document.querySelector(".moves");
+            const btnId = document.querySelector(".id");
+            const btnClosed = document.querySelector("#close");
+            const btnStart = document.getElementById("startGame");
+            const btnShuffle = document.getElementById("shuffleCards");
+            const btnRestart = document.getElementById("restartGame");
+
+            btnStart.addEventListener("click", startGame);
+            btnShuffle.addEventListener("click", shuffleCards);
+            btnRestart.addEventListener("click", restartGame);
+
+            // Atualizado para referenciar a div ".players" e seus descendentes
+            const playersContainer = document.querySelector(".players");
+
+            btnWeight.addEventListener("click", () => playRound("peso"));
+            btnHeight.addEventListener("click", () => playRound("altura"));
+            btnMoves.addEventListener("click", () => playRound("qtdMovimentos"));
+            btnId.addEventListener("click", () => playRound("id"));
+
+            btnClosed.addEventListener("click", () => closeModal());
+
+            // Adiciona listener de hover à div ".players" e seus descendentes
+            playersContainer.addEventListener("mouseover", handleHover);
+        }
+
+        // Função para lidar com o hover
+        function handleHover(event) {
+            const cardElement = event.target.closest(".card");
+            if (cardElement) {
+                // Adicione lógica de hover aqui, se necessário
+            }
+        }
+    </script>
+</body>
+
+</html>

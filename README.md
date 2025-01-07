@@ -1,6 +1,8 @@
 # Jogo de Poké-Trunfo
 
-O **Poké-Trunfo** é um jogo de cartas inspirado no famoso jogo "Trunfo", onde os jogadores competem usando cartas de Pokémon. O jogo utiliza dados da [PokéAPI](https://pokeapi.co/) para obter informações sobre os Pokémon e desafiar o oponente em uma batalha de atributos.
+O **Poké-Trunfo** é um jogo de cartas inspirado no famoso jogo "Super Trunfo", onde os jogadores competem usando cartas de Pokémon. O jogo utiliza dados da [PokéAPI](https://pokeapi.co/) para obter informações sobre os Pokémon e desafiar o oponente em uma batalha de atributos.
+
+https://poke-trunfo.netlify.app/
 
 ## Como jogar
 

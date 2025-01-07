@@ -22,23 +22,23 @@ class CardGame {
                 const result = body.results;
                 const requests = result.map((element) =>
                     fetch(element.url)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            const card = {
-                                nome: data.name,
-                                imagem: data.sprites.front_default,
-                                peso: data.weight,
-                                altura: data.height,
-                                qtdMovimentos: data.moves.length,
-                                id: data.id,
-                            };
-                            return {
-                                [element.name]: card,
-                            };
-                        })
-                        .catch((error) => {
-                            console.error(`Erro na requisição para ${element.url}:`, error);
-                        })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const card = {
+                            nome: data.name,
+                            imagem: data.sprites.front_default,
+                            peso: data.weight,
+                            altura: data.height,
+                            qtdMovimentos: data.moves.length,
+                            id: data.id,
+                        };
+                        return {
+                            [element.name]: card,
+                        };
+                    })
+                    .catch((error) => {
+                        console.error(`Erro na requisição para ${element.url}:`, error);
+                    })
                 );
 
                 return Promise.all(requests);
@@ -55,7 +55,9 @@ class CardGame {
         const gamersDeck = this.shuffle(responses);
 
         gamersDeck.forEach((card, index) => {
-            index % 2 === 0 ? this.player1.hand.push(card) : this.player2.hand.push(card);
+            index % 2 === 0 ?
+                this.player1.hand.push(card) :
+                this.player2.hand.push(card);
         });
 
         console.log("Cartas do Jogador 1:", this.player1.hand);
@@ -102,8 +104,14 @@ class CardGame {
             const attributesElement = document.createElement("div");
             attributesElement.classList.add("card__attributes");
 
-            const weightElement = this.createAttributeElement("weight", `Peso: ${card[key].peso / 10}kg`);
-            const heightElement = this.createAttributeElement("height", `Altura: ${card[key].altura / 10}m`);
+            const weightElement = this.createAttributeElement(
+                "weight",
+                `Peso: ${card[key].peso / 10}kg`
+            );
+            const heightElement = this.createAttributeElement(
+                "height",
+                `Altura: ${card[key].altura / 10}m`
+            );
             const movesElement = this.createAttributeElement(
                 "moves",
                 `Quantidade de Ataques: ${card[key].qtdMovimentos}`
@@ -118,10 +126,18 @@ class CardGame {
             cardElement.appendChild(titleElement);
             cardElement.appendChild(attributesElement);
 
-            idElement.addEventListener("click", () => this.compareAttribute("id", card[key].id));
-            weightElement.addEventListener("click", () => this.compareAttribute("peso", card[key].peso));
-            heightElement.addEventListener("click", () => this.compareAttribute("altura", card[key].altura));
-            movesElement.addEventListener("click", () => this.compareAttribute("qtdMovimentos", card[key].qtdMovimentos));
+            idElement.addEventListener("click", () =>
+                this.compareAttribute("id", card[key].id)
+            );
+            weightElement.addEventListener("click", () =>
+                this.compareAttribute("peso", card[key].peso)
+            );
+            heightElement.addEventListener("click", () =>
+                this.compareAttribute("altura", card[key].altura)
+            );
+            movesElement.addEventListener("click", () =>
+                this.compareAttribute("qtdMovimentos", card[key].qtdMovimentos)
+            );
         }
 
         return cardElement;
@@ -140,21 +156,24 @@ class CardGame {
         const btnMoves = document.querySelector(".moves");
         const btnId = document.querySelector(".id");
         const btnClosed = document.querySelector("#close");
-    
+
         const clickHandler = async (attribute) => {
             await this.playRound(attribute);
+
         };
-    
+
         btnWeight.addEventListener("click", () => clickHandler("peso"));
         btnHeight.addEventListener("click", () => clickHandler("altura"));
         btnMoves.addEventListener("click", () => clickHandler("qtdMovimentos"));
         btnId.addEventListener("click", () => clickHandler("id"));
-    
+
         btnClosed.addEventListener("click", () => this.closeModal());
     }
 
     compareAttribute(attributeName, attributeValue) {
-        console.log(`Atributo ${attributeName} clicado com valor ${attributeValue}`);
+        console.log(
+            `Atributo ${attributeName} clicado com valor ${attributeValue}`
+        );
         this.playRound(attributeName);
     }
 
@@ -166,7 +185,10 @@ class CardGame {
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex--;
 
-            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex],
+                array[currentIndex],
+            ];
         }
 
         return array;
@@ -178,42 +200,43 @@ class CardGame {
             return;
         }
 
-        const player1Card = this.player1.hand[0][Object.keys(this.player1.hand[0])[0]][attribute];
-        const player2Card = this.player2.hand[0][Object.keys(this.player2.hand[0])[0]][attribute];
+        const player1Card =
+            this.player1.hand[0][Object.keys(this.player1.hand[0])[0]][attribute];
+        const player2Card =
+            this.player2.hand[0][Object.keys(this.player2.hand[0])[0]][attribute];
 
-        if (player1Card > player2Card) {
-            this.player1.score += this.player1.hand.length;
-            console.log("Jogador 1 venceu a rodada!");
-            this.player1.hand.push(this.player2.hand.shift());
-            this.player1.hand.push(this.player1.hand.shift());
-        } else if (player2Card > player1Card) {
-            this.player2.score += this.player2.hand.length;
-            console.log("Jogador 2 venceu a rodada!");
-            this.player2.hand.push(this.player1.hand.shift());
-            this.player2.hand.push(this.player2.hand.shift());
-        } else {
-            this.player1.score += this.player1.hand.length;
-            this.player2.score += this.player2.hand.length;
-            console.log("Empate! As cartas vão para a próxima rodada.");
-            this.player1.hand = this.shuffle(this.player1.hand);
-            this.player2.hand = this.shuffle(this.player2.hand);
-        }
+        setTimeout(() => {
+            if (player1Card > player2Card) {
+                this.player1.score += this.player1.hand.length;
+                alert("Jogador 1 venceu a rodada!");
+                this.player1.hand.push(this.player2.hand.shift());
+                this.player1.hand.push(this.player1.hand.shift());
+            } else if (player2Card > player1Card) {
+                this.player2.score += this.player2.hand.length;
+                alert("Jogador 2 venceu a rodada!");
+                this.player2.hand.push(this.player1.hand.shift());
+                this.player2.hand.push(this.player2.hand.shift());
+            } else {
+                this.player1.score += this.player1.hand.length;
+                this.player2.score += this.player2.hand.length;
+                alert("Empate! As cartas vão para a próxima rodada.");
+                this.player1.hand = this.shuffle(this.player1.hand);
+                this.player2.hand = this.shuffle(this.player2.hand);
+            }
 
-        this.updateScore();
-        this.updateFirstCard(this.player1);
-        this.updateFirstCard(this.player2);
-        this.clearLayout();
-        this.renderHands();
-        this.updateCardCount(this.player1.hand.length, this.player2.hand.length);
-    }
-
-    updateScore() {
-        console.log(`Placar - Jogador 1: ${this.player1.score} | Jogador 2: ${this.player2.score}`);
+            const handPlayer2 = document.querySelector(".player2-container");
+            const firstCardPlayer2 = handPlayer2.querySelector(".card");
+            firstCardPlayer2.classList.add("flip-vertical-right");
+            this.updateFirstCard(this.player1);
+            this.updateFirstCard(this.player2);
+            this.clearLayout();
+            this.renderHands();
+            this.updateCardCount(this.player1.hand.length, this.player2.hand.length);
+        }, 3000);
     }
 
     playRound(attribute) {
         this.compareCards(attribute);
-        this.updateScore();
 
         if (this.player1.hand.length === 0) {
             console.log("Jogador 1 está sem cartas. Jogador 2 venceu!");
@@ -242,14 +265,19 @@ class CardGame {
                     player.hand[0] = data;
                 })
                 .catch((error) => {
-                    console.error(`Erro na atualização da carta para ${player.hand[0].name}:`, error);
+                    console.error(
+                        `Erro na atualização da carta para ${player.hand[0].name}:`,
+                        error
+                    );
                 });
         }
     }
 
     async fetchPokemonData(pokemonName) {
         try {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+            const response = await fetch(
+                `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+            );
             const data = await response.json();
             return {
                 nome: data.name,
@@ -279,18 +307,18 @@ class CardGame {
     }
 
     showVictoryModal() {
-        const modal = document.getElementById('victoryModal');
-        modal.style.display = 'block';
+        const modal = document.getElementById("victoryModal");
+        modal.style.display = "block";
     }
 
     closeModal() {
-        const modal = document.getElementById('victoryModal');
-        modal.style.display = 'none';
+        const modal = document.getElementById("victoryModal");
+        modal.style.display = "none";
     }
 
     updateCardCount(player1Count, player2Count) {
-        const player1CardCount = document.getElementById('player1CardCount');
-        const player2CardCount = document.getElementById('player2CardCount');
+        const player1CardCount = document.getElementById("player1CardCount");
+        const player2CardCount = document.getElementById("player2CardCount");
 
         player1CardCount.textContent = player1Count;
         player2CardCount.textContent = player2Count;
@@ -308,7 +336,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     btnShuffle.addEventListener("click", function () {
         cardGame.clearLayout();
-        const shuffledDeck = cardGame.shuffle([...cardGame.player1.hand, ...cardGame.player2.hand]);
+        const shuffledDeck = cardGame.shuffle([
+            ...cardGame.player1.hand,
+            ...cardGame.player2.hand,
+        ]);
         cardGame.player1.hand = shuffledDeck.slice(0, shuffledDeck.length / 2);
         cardGame.player2.hand = shuffledDeck.slice(shuffledDeck.length / 2);
 

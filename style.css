@@ -33,6 +33,14 @@ nav.controls {
     justify-content: space-evenly;
 }
 
+button{
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #00000070;
+    color: #fff;
+    margin: 20px;
+    border: 1px solid #fff;
+}
 .card {
     border: 1px solid #CCC;
     border-radius: 1em;
@@ -68,7 +76,7 @@ nav.controls {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -79,20 +87,20 @@ nav.controls {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: rgba(255, 255, 255, 0.5);
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border-radius: 10px;
     width: 80%;
     text-align: center;
-    color: black;
 }
 
 .close {
-    color: #000000;
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close:hover,

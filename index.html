@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poke-Trunfo</title>
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <h1 class="logo">
+        <a href="#" id="back-to-start">
+            <img src="./logo.png" alt="Poke-trunfo's Logo">
+        </a>
+    </h1>
 
     <div id="start-screen" class="start-screen">
-        <h1>Battle Cards Pokémon</h1>
-        <p>Bem-vindo ao Battle Cards!</p>
+        <h1>Poke-Trunfo</h1>
+        <p>Bem-vindo ao Battle Cards Poke-trunfo!</p>
         <p>Como jogar:</p>
         <ul>
             <li>Escolha um atributo da sua carta.</li>
@@ -23,13 +33,13 @@
         </ul>
         <button id="start-game-btn" class="start-btn">Começar Jogo</button>
     </div>
-    
-    <nav class="controls">
+
+    <nav class="controls" style="display: none;">
         <button class="start-game">Começar</button>
         <button id="shuffle-button" class="shuffle-deck">Embaralhar</button>
         <!-- <button class="restart-game">Recomeçar</button> -->
     </nav>
-    <div class="game">
+    <div class="game" style="display: none;">
         <div id="player1-container">
             <p>Jogador 1: <span id="player1CardCount">0</span> cartas</p>
         </div>
@@ -45,4 +55,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

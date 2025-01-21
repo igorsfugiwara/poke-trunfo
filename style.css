@@ -1,7 +1,3 @@
-p {
-    margin: 0;
-}
-
 body {
     background-color: #0A3A6A;
     color: #fff;
@@ -14,13 +10,19 @@ nav.controls {
     align-items: center;
 
 }
+.logo a {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    margin-top: 1em;
+}
 /* tela inicial */
 .start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     background-color: #0A3A6A;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -52,7 +54,7 @@ nav.controls {
     padding: 0.8rem 1.5rem;
     background-color: #F2BD16;
     color: #0A3A6A;
-    border: none;
+    border: 2px solid #F2BD16;
     border-radius: 5px;
     font-size: 1.2rem;
     cursor: pointer;
@@ -60,7 +62,9 @@ nav.controls {
 }
 
 .start-btn:hover {
-    background-color: #e55342;
+    background-color: #0A3A6A;
+    color: #F2BD16;
+    border: 2px solid #F2BD16;
 }
 
 
@@ -166,8 +170,9 @@ button{
     margin: 15% auto;
     padding: 20px;
     border-radius: 10px;
-    width: 80%;
+    width: 60%;
     text-align: center;
+    font-size: 24px;
 }
 
 .close {
@@ -201,6 +206,18 @@ button{
     -webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
     animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
+
+
+
+/* media query */
+
+@media screen and (max-width: 600px) {
+    .card-inner {
+        width: 120px;
+    }
+}
+
+
 
 @-webkit-keyframes flip-2-ver-right-fwd {
     0% {

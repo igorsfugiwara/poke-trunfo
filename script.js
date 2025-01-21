@@ -162,7 +162,9 @@ class CardGame {
         const closeBtn = document.getElementsByClassName("close")[0];
     
         modalMessage.textContent = message;
-        modal.style.display = "block";
+        modal.style.display = "flex";
+        modal.style.justifyContent = "center";
+        modal.style.alignItems = "center";
     
         closeBtn.onclick = () => {
             modal.style.display = "none";
@@ -192,16 +194,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+//Tela inicial
 document.addEventListener("DOMContentLoaded", () => {
-    const startScreen = document.getElementById("start-screen");
-    const startGameBtn = document.getElementById("start-game-btn");
-    const mainGameLayout = document.querySelector(".main-game");
-
-    startGameBtn.addEventListener("click", () => {
-        startScreen.style.display = "none"; // Esconde a tela inicial
-        mainGameLayout.style.display = "block"; // Mostra o jogo
+    const startButton = document.getElementById("start-game-btn"); // Botão da tela inicial
+    const startScreen = document.getElementById("start-screen"); // Tela inicial
+    const controls = document.querySelector(".controls"); // Controles
+    const game = document.querySelector(".game"); // Controles
+    
+    // Ocultar controles inicialmente
+    controls.style.display = "none";
+    
+    // Evento de clique no botão "Começar Jogo"
+    startButton.addEventListener("click", () => {
+        // Esconde a tela inicial
+        startScreen.style.display = "none";
+    
+        // Mostra os controles e jogo
+        controls.style.display = "flex";
+        game.style.display = "flex";
+    
+        // Inicializa o jogo
+        game.fetchCards();
     });
+});
 
-    // Esconde o layout principal inicialmente
-    mainGameLayout.style.display = "none";
+//Voltar a tela inicial
+const backToStartLink = document.getElementById("back-to-start");
+
+backToStartLink.addEventListener("click", (event) => {
+    event.preventDefault(); // Impede o comportamento padrão do link
+    document.getElementById("start-screen").style.display = "flex"; // Mostra a tela inicial
+    document.querySelector(".controls").style.display = "none"; // Esconde os controles
+    document.querySelector(".game").style.display = "none"; // Esconde a área do jogo
 });

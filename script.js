@@ -191,3 +191,17 @@ document.addEventListener("DOMContentLoaded", () => {
         game.fetchCards();
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const startScreen = document.getElementById("start-screen");
+    const startGameBtn = document.getElementById("start-game-btn");
+    const mainGameLayout = document.querySelector(".main-game");
+
+    startGameBtn.addEventListener("click", () => {
+        startScreen.style.display = "none"; // Esconde a tela inicial
+        mainGameLayout.style.display = "block"; // Mostra o jogo
+    });
+
+    // Esconde o layout principal inicialmente
+    mainGameLayout.style.display = "none";
+});

@@ -3,7 +3,7 @@ p {
 }
 
 body {
-    background-color: #333;
+    background-color: #0A3A6A;
     color: #fff;
     font-family: "Roboto", serif;
 }
@@ -14,6 +14,55 @@ nav.controls {
     align-items: center;
 
 }
+/* tela inicial */
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0A3A6A;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.start-screen h1 {
+    font-size: 2.5rem;
+    color: #F2BD16;
+    margin-bottom: 1rem;
+}
+
+.start-screen p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.start-screen ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.start-screen li {
+    margin: 0.5rem 0;
+}
+
+.start-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #F2BD16;
+    color: #0A3A6A;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: #e55342;
+}
+
 
 .startGame,
 .shuffleCards,
@@ -44,13 +93,13 @@ button{
 }
 
 .card {
-    border: 1px solid #CCC;
+    border: 1px solid #FFF;
     border-radius: 1em;
     display: flex;
     flex-direction: column;
     padding: 1em;
     margin: 1em;
-    gap: 1em;
+    box-shadow: 10px 5px 5px #243260;
 }
 
 .card-inner {
@@ -64,9 +113,11 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: .5em;
 }
 .card-front img {
     width: 100%;
+    background-color: #efefef33;
 }
 
 .card__attribute {
@@ -75,12 +126,13 @@ button{
     display: flex;
     justify-content: space-between;
     gap: .5em;
+    padding: .3em;
 
 }
 
 
 .card__attribute:hover {
-    background-color: #666;
+    background-color: #243260;
     border-radius: 4px;
 }
 

@@ -88,10 +88,10 @@ class CardGame {
                         <p class="card__title">${card.name.toUpperCase()}</p>
                     </div>
                     <div class="card-back">
-                        <p class="card__attribute clickable" data-attribute="id" data-value="${card.id}">ID: ${card.id}</p>
-                        <p class="card__attribute clickable" data-attribute="weight" data-value="${card.weight}">Peso: ${card.weight / 10}kg</p>
-                        <p class="card__attribute clickable" data-attribute="height" data-value="${card.height}">Altura: ${card.height / 10}m</p>
-                        <p class="card__attribute clickable" data-attribute="moves" data-value="${card.moves}">Movimentos: ${card.moves}</p>
+                        <p class="card__attribute clickable" data-attribute="id" data-value="${card.id}">ID: <span> ${card.id}</span></p>
+                        <p class="card__attribute clickable" data-attribute="weight" data-value="${card.weight}">Peso: <span> ${card.weight / 10} kg</span></p>
+                        <p class="card__attribute clickable" data-attribute="height" data-value="${card.height}">Altura: <span> ${card.height / 10} m</span></p>
+                        <p class="card__attribute clickable" data-attribute="moves" data-value="${card.moves}">Movimentos: <span> ${card.moves}</span></p>
                     </div>
                 </div>
             `;

@@ -5,6 +5,7 @@ p {
 body {
     background-color: #333;
     color: #fff;
+    font-family: "Roboto", serif;
 }
 
 nav.controls {
@@ -41,6 +42,7 @@ button{
     margin: 20px;
     border: 1px solid #fff;
 }
+
 .card {
     border: 1px solid #CCC;
     border-radius: 1em;
@@ -51,11 +53,33 @@ button{
     gap: 1em;
 }
 
-.card__attributes p {
-    text-align: justify;
+.card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+    width: 170px;
 }
 
-.card__attributes p:hover {
+.card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-front img {
+    width: 100%;
+}
+
+.card__attribute {
+    text-align: justify;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    gap: .5em;
+
+}
+
+
+.card__attribute:hover {
     background-color: #666;
     border-radius: 4px;
 }
@@ -68,7 +92,6 @@ button{
 .card__attributes {
     display: flex;
     flex-direction: column;
-    gap: .5em;
 }
 
 

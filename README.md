@@ -1,53 +1,81 @@
-# Jogo de Poké-Trunfo
+# Poke-Trunfo Modern
 
-O **Poké-Trunfo** é um jogo de cartas inspirado no famoso jogo "Super Trunfo", onde os jogadores competem usando cartas de Pokémon. O jogo utiliza dados da [PokéAPI](https://pokeapi.co/) para obter informações sobre os Pokémon e desafiar o oponente em uma batalha de atributos.
+![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![React](https://img.shields.io/badge/React-18+-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6)
 
-https://poke-trunfo.netlify.app/
+> **"Gotta Trump 'Em All!"**  
+> A sleek, mobile-first Super Trumps battle arena featuring Pokémon.
 
-## Como jogar
+## 📋 Overview
 
-1. **Iniciar o jogo**: O jogo começa ao clicar no botão **Iniciar Jogo**. Isso irá buscar informações sobre Pokémon da PokéAPI e distribuir as cartas entre os dois jogadores.
-2. **Rodadas**: Os jogadores competem em rodadas, escolhendo um atributo (Peso, Altura, Quantidade de Movimentos ou ID) para desafiar o oponente. A carta com o maior valor para o atributo escolhido vence a rodada e leva a carta do oponente.
-3. **Vencer o jogo**: O jogo termina quando um dos jogadores não tem mais cartas. O jogador com o maior número de cartas no final da partida é o vencedor.
+Poke-Trunfo Modern is a web application that revives the nostalgia of card battle games with a modern, dark aesthetic. Players compete against the computer by selecting stats (HP, Attack, Defense, Speed). The interface is optimized for mobile devices, featuring smooth 3D flip animations and dynamic color theming based on Pokémon types.
 
-## Como funciona
+---
 
-O jogo é baseado nas cartas de Pokémon, que possuem os seguintes atributos:
-- **Nome**: O nome do Pokémon.
-- **Imagem**: Imagem do Pokémon.
-- **Peso**: Peso do Pokémon.
-- **Altura**: Altura do Pokémon.
-- **Quantidade de Ataques**: Número de ataques que o Pokémon pode realizar.
-- **ID**: Identificador único do Pokémon.
+## 🏛️ Architecture (MVC)
 
-A cada rodada, os jogadores escolhem um atributo para comparar. O jogador que tiver o valor maior para o atributo escolhido vence a rodada e ganha as cartas do oponente.
+The application strictly follows the Separation of Concerns principle:
 
-## Tecnologias utilizadas
+1.  **Model (`types.ts`, `services/`)**:
+    *   Defines data structures (`Pokemon`, `Score`).
+    *   Fetches data from PokéAPI.
+    *   Ensures type safety.
 
-- **HTML**: Estrutura da página.
-- **CSS**: Estilos para o layout e a apresentação do jogo.
-- **JavaScript Vanilla**: Lógica do jogo, interações com a PokéAPI e controle das cartas e dos jogadores.
+2.  **View (`components/`, `App.tsx`)**:
+    *   **Mobile First UI**: Opponent card on top, Player card anchored bottom.
+    *   **Theming**: Black/White/Vibrant Green palette + Type-specific card colors.
+    *   **Animations**: 0.4s 3D CSS Flip effect for opponent card reveals.
 
-## Funcionalidades
+3.  **Controller (`hooks/useGameLogic.ts`)**:
+    *   Manages the Game Loop (Start -> Turn -> Reveal -> Result).
+    *   Handles Score updates and Win/Loss logic.
 
-- **Fetch de dados**: As cartas dos Pokémon são obtidas da [PokéAPI](https://pokeapi.co/).
-- **Baralho de cartas**: Cada jogador possui um conjunto de cartas com Pokémon aleatórios.
-- **Interação**: Os jogadores podem clicar nos atributos das cartas para iniciar a comparação de dados.
-- **Pontuação**: O jogador que ganhar uma rodada ganha a carta do oponente. O vencedor é o jogador com mais cartas no final do jogo.
+---
 
-## Instruções de execução
+## 🛠️ Tech Stack
 
-Para jogar o Poké-Trunfo, basta abrir o arquivo `index.html` em seu navegador. O jogo funciona diretamente no frontend, sem a necessidade de backend ou servidores.
+*   **Runtime:** React 18+
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS (with custom 3D transform utilities)
+*   **Icons:** Lucide React
+*   **Data:** PokéAPI
 
-1. Clone este repositório ou faça o download dos arquivos.
-2. Abra o arquivo `index.html` em um navegador moderno.
+---
 
-## Contribuição
+## 🚀 Installation & Setup
 
-Sinta-se à vontade para contribuir com melhorias ou correções! Para isso, basta seguir as etapas abaixo:
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/igorsfugiwara/poke-trunfo.git
+    cd poke-trunfo
+    ```
 
-1. Faça um fork deste repositório.
-2. Crie uma branch para suas alterações (`git checkout -b feature-nome-da-sua-feature`).
-3. Commit suas alterações (`git commit -am 'Adiciona nova feature'`).
-4. Push para a branch (`git push origin feature-nome-da-sua-feature`).
-5. Abra um Pull Request.
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Run Development Server**
+    ```bash
+    npm start
+    ```
+
+---
+
+## 📖 Features
+
+*   **Smart Layout**: Optimized for thumb-reach on mobile devices.
+*   **Visual Feedback**: 
+    *   Cards flip to reveal stats.
+    *   Cards glow green (Win) or dim red (Loss).
+    *   Background elements pulse with the game state.
+*   **Monetization Ready**: Dedicated Sticky Footer Ad slot.
+*   **Accessibility**: High contrast text, ARIA labels, and focus management.
+
+---
+
+## 🤝 Contribution
+
+Contributions are welcome! Fork, branch, and submit a PR.

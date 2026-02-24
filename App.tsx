@@ -4,6 +4,7 @@ import { useScrollDirection } from './hooks/useScrollDirection';
 import PokemonCard from './components/PokemonCard';
 import AdBanner from './components/AdBanner';
 import Button from './components/Button';
+import Footer from './components/Footer';
 import { GameState } from './types';
 import { Play, Zap, Trophy, Frown, RotateCcw } from 'lucide-react';
 
@@ -221,7 +222,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-
+      <Footer/>
       <AdBanner isExpanded={isAdExpanded} onToggle={() => setIsAdExpanded(!isAdExpanded)} />
     </div>
   );

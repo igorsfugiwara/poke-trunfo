@@ -20,10 +20,22 @@ const Footer: React.FC = () => {
 
                 <div className="flex items-center gap-4">
                     <a
+                        href="/sobre.html"
+                        className="text-[10px] font-medium text-zinc-500 hover:text-zinc-300 transition-colors uppercase tracking-wider"
+                    >
+                        Sobre
+                    </a>
+                    <a
+                        href="/como-jogar.html"
+                        className="text-[10px] font-medium text-zinc-500 hover:text-zinc-300 transition-colors uppercase tracking-wider"
+                    >
+                        Como Jogar
+                    </a>
+                    <a
                         href="/privacidade.html"
                         className="text-[10px] font-medium text-zinc-500 hover:text-zinc-300 transition-colors uppercase tracking-wider"
                     >
-                        Política de Privacidade
+                        Privacidade
                     </a>
                     <a
                         href="https://github.com/igorsfugiwara/poke-trunfo"
@@ -32,7 +44,7 @@ const Footer: React.FC = () => {
                         className="flex items-center gap-1 text-[10px] font-medium text-zinc-500 hover:text-white transition-colors group uppercase tracking-wider"
                     >
                         <Github className="w-3 h-3" />
-                        Repositório
+                        GitHub
                         <ExternalLink className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
                 </div>

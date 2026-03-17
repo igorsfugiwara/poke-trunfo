@@ -87,25 +87,53 @@ const App: React.FC = () => {
         
         {/* Intro Screen */}
         {gameState === GameState.START && (
-          <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
-            <div className="relative hover:scale-105 transition-transform duration-500 p-2">
-              <div className="absolute inset-0 bg-green-500 blur-2xl opacity-20 animate-pulse"></div>
-              <PokeballIcon />
+          <div className="flex flex-col items-center h-full text-center p-6 overflow-y-auto animate-fade-in">
+            <div className="flex flex-col items-center justify-center space-y-6 py-6">
+              <div className="relative hover:scale-105 transition-transform duration-500 p-2">
+                <div className="absolute inset-0 bg-green-500 blur-2xl opacity-20 animate-pulse"></div>
+                <PokeballIcon />
+              </div>
+              <div>
+                <h2 className="text-4xl md:text-6xl font-black text-white mb-2 italic tracking-tighter leading-none">
+                  POKE <br />
+                  <span className="bg-green-500 text-black px-2 transform -skew-x-6 inline-block shadow-[0_0_15px_rgba(34,197,94,0.4)]">
+                    TRUNFO
+                  </span>
+                </h2>
+                <p className="text-zinc-400 text-xs md:text-sm font-medium">
+                  Win the battle!
+                </p>
+              </div>
+              <Button onClick={startRound} className="w-full max-w-[200px] shadow-green-900/50 py-3 text-sm">
+                PLAY NOW
+              </Button>
             </div>
-            <div>
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-2 italic tracking-tighter leading-none">
-                POKE <br />
-                <span className="bg-green-500 text-black px-2 transform -skew-x-6 inline-block shadow-[0_0_15px_rgba(34,197,94,0.4)]">
-                  TRUNFO
-                </span>
-              </h2>
-              <p className="text-zinc-400 text-xs md:text-sm font-medium">
-                Win the battle!
-              </p>
+
+            {/* Editorial content section for SEO / AdSense */}
+            <div className="w-full max-w-lg text-left mt-2 pb-8 space-y-5">
+              <div className="border-t border-zinc-800 pt-6">
+                <h3 className="text-base font-bold text-white mb-3 italic tracking-tight">
+                  O que é PokéTrunfo?
+                </h3>
+                <p className="text-zinc-400 text-xs leading-relaxed mb-3">
+                  O <strong className="text-zinc-200">PokéTrunfo</strong> é um jogo de cartas digital que combina a mecânica do clássico <strong className="text-zinc-200">Super Trunfo</strong> com os personagens do universo Pokémon. Dois Pokémon são sorteados aleatoriamente a cada rodada — um para você e um para o computador — e você deve escolher qual atributo do seu Pokémon supera o do adversário.
+                </p>
+                <p className="text-zinc-400 text-xs leading-relaxed mb-3">
+                  Cada carta exibe quatro estatísticas reais da franquia Pokémon: <strong className="text-zinc-200">HP</strong> (pontos de vida), <strong className="text-zinc-200">Ataque</strong>, <strong className="text-zinc-200">Defesa</strong> e <strong className="text-zinc-200">Velocidade</strong>. Os dados são buscados em tempo real da PokéAPI, garantindo valores fiéis aos jogos originais da primeira geração (os 151 Pokémon clássicos do Game Boy).
+                </p>
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  A estratégia está em reconhecer as forças de cada Pokémon: tipos Luta e Dragão dominam em Ataque, tipos Rocha e Aço têm Defesa excepcional, e tipos Elétrico e Voador são imbatíveis em Velocidade. O primeiro a conquistar <strong className="text-zinc-200">5 pontos</strong> vence a partida. Simples de aprender, difícil de largar.
+                </p>
+              </div>
+              <div className="flex gap-3 flex-wrap">
+                <a href="/como-jogar.html" className="text-[10px] text-green-500 hover:text-green-400 border border-green-500/30 hover:border-green-500/60 px-3 py-1.5 rounded-full transition-all uppercase tracking-wider font-semibold">
+                  Como jogar →
+                </a>
+                <a href="/sobre.html" className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-700 hover:border-zinc-600 px-3 py-1.5 rounded-full transition-all uppercase tracking-wider">
+                  Sobre o projeto
+                </a>
+              </div>
             </div>
-            <Button onClick={startRound} className="w-full max-w-[200px] shadow-green-900/50 py-3 text-sm">
-              PLAY NOW
-            </Button>
           </div>
         )}
 

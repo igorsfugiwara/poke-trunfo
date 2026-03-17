@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Como Jogar PokéTrunfo — Tutorial completo e dicas</title>
+  <meta name="description" content="Aprenda tudo sobre como jogar o PokéTrunfo: objetivo, regras completas, como os atributos funcionam, estratégias para vencer e dicas para iniciantes." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1881797135791796" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #09090b; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #18181b; }
+    ::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white antialiased selection:bg-green-500 selection:text-black min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="h-14 bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-4 sticky top-0 z-40 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group">
+      <svg viewBox="0 0 100 100" class="w-6 h-6 text-green-500">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/>
+        <path d="M 5,50 L 95,50" stroke="currentColor" stroke-width="6"/>
+        <circle cx="50" cy="50" r="14" fill="currentColor"/>
+        <circle cx="50" cy="50" r="8" fill="#09090b"/>
+      </svg>
+      <span class="text-sm font-black tracking-tighter text-white italic group-hover:text-green-400 transition-colors">POKE-TRUNFO</span>
+    </a>
+    <a href="/" class="text-xs font-semibold text-green-500 hover:text-green-400 transition-colors border border-green-500/40 hover:border-green-500 px-3 py-1.5 rounded-full">
+      ← Jogar agora
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-3xl mx-auto w-full px-4 py-10">
+
+    <!-- Page Title -->
+    <div class="mb-10">
+      <h1 class="text-3xl md:text-5xl font-black text-white italic tracking-tighter leading-none mb-3">
+        Como <span class="bg-green-500 text-black px-2 transform -skew-x-6 inline-block">Jogar</span>
+      </h1>
+      <p class="text-zinc-400 text-sm md:text-base">
+        Tutorial completo com regras, dicas e estratégias para vencer o computador.
+      </p>
+    </div>
+
+    <!-- Section: Objetivo -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Objetivo do Jogo</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O objetivo do PokéTrunfo é simples: <strong class="text-white">acumular 5 pontos antes do computador</strong>. Cada ponto é conquistado vencendo uma rodada, e cada rodada é decidida pela comparação de um único atributo entre duas cartas de Pokémon — a sua e a do computador.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Ao contrário de muitos jogos de cartas, aqui não existe sorte pura: o jogador é quem escolhe qual atributo será comparado. Isso significa que a observação, o raciocínio rápido e o conhecimento sobre os tipos de Pokémon fazem toda a diferença entre vencer e perder.
+      </p>
+    </section>
+
+    <!-- Section: As Cartas -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Como as Cartas Funcionam</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Cada carta representa um Pokémon da primeira geração (geração I, com os 151 Pokémon originais do Game Boy). Os dados são carregados em tempo real da <strong class="text-white">PokéAPI</strong>, garantindo que os valores sejam fiéis aos jogos originais da franquia.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Cada carta exibe quatro atributos principais, que são os mesmos utilizados nos jogos da série principal de Pokémon:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center text-red-400 text-lg">❤️</div>
+            <h3 class="text-white font-bold">HP (Pontos de Vida)</h3>
+          </div>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            O HP representa a quantidade de vida do Pokémon. Valores altos de HP indicam um Pokémon resistente. Pokémon como Chansey e Snorlax são famosos por terem HP altíssimo — acima de 250 pontos. Escolher HP quando seu Pokémon é "tanque" é geralmente uma boa estratégia.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center text-yellow-400 text-lg">⚡</div>
+            <h3 class="text-white font-bold">Ataque</h3>
+          </div>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            O Ataque determina o poder ofensivo físico do Pokémon. Pokémon do tipo Luta e Dragão costumam ter Ataque muito alto. Dragonite, Machamp e Flareon são exemplos com ataque superior a 125. Se você tiver um desses, aposte no Ataque.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 text-lg">🛡️</div>
+            <h3 class="text-white font-bold">Defesa</h3>
+          </div>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            A Defesa mede a capacidade do Pokémon de resistir a ataques físicos. Pokémon do tipo Rocha e Aço são os campeões nessa categoria. Onix, Cloyster e Rhydon possuem defesa excepcional. Um Cloyster tem 180 de Defesa — praticamente imbatível nesse atributo.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center text-green-400 text-lg">💨</div>
+            <h3 class="text-white font-bold">Velocidade</h3>
+          </div>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            A Velocidade determina quem age primeiro nos jogos oficiais. No PokéTrunfo, ela é um atributo como qualquer outro. Pokémon do tipo Elétrico e Voador geralmente são muito rápidos. Jolteon tem 130 de Velocidade, e Aerodactyl chega a 130 também. É uma boa aposta com Pokémon ágeis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Como Vencer uma Rodada -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Como Vencer uma Rodada</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Vencer uma rodada é simples na regra, mas desafiador na prática. O processo ocorre da seguinte forma:
+      </p>
+      <ol class="space-y-3 list-none">
+        <li class="flex gap-4 items-start bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-4">
+          <span class="text-green-500 font-black text-lg min-w-[24px]">1.</span>
+          <p class="text-zinc-300 text-sm leading-relaxed">Dois Pokémon são sorteados: um para você e um para o computador. O Pokémon do computador começa com a face voltada para baixo — você <strong class="text-white">não sabe</strong> os atributos do adversário antes de escolher.</p>
+        </li>
+        <li class="flex gap-4 items-start bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-4">
+          <span class="text-green-500 font-black text-lg min-w-[24px]">2.</span>
+          <p class="text-zinc-300 text-sm leading-relaxed">Você analisa os atributos do seu Pokémon e toca/clica naquele que acredita ser superior ao do adversário. Essa é a decisão mais importante de cada rodada.</p>
+        </li>
+        <li class="flex gap-4 items-start bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-4">
+          <span class="text-green-500 font-black text-lg min-w-[24px]">3.</span>
+          <p class="text-zinc-300 text-sm leading-relaxed">A carta do computador é revelada. Os valores do atributo escolhido são comparados. <strong class="text-white">Maior valor = ponto para o vencedor</strong>. Em caso de empate, nenhum ponto é dado.</p>
+        </li>
+        <li class="flex gap-4 items-start bg-zinc-900/50 border border-zinc-800/60 rounded-xl p-4">
+          <span class="text-green-500 font-black text-lg min-w-[24px]">4.</span>
+          <p class="text-zinc-300 text-sm leading-relaxed">Clique em <strong class="text-white">Next Round</strong> para avançar. Dois novos Pokémon são sorteados e o ciclo recomeça. Não há nenhuma relação entre as cartas de rodadas anteriores.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Section: Como Ganhar o Jogo -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Como Ganhar o Jogo</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        A partida termina quando um dos jogadores — você ou o computador — atinge <strong class="text-white">5 pontos</strong>. Nesse momento, a tela de fim de jogo exibe o resultado: vitória (com o troféu dourado) ou derrota.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Se ambos os jogadores estiverem empatados em pontos e as rodadas seguintes também resultarem em empate, o jogo continua até que um dos lados abra vantagem. Não existe empate no resultado final — alguém sempre chega aos 5 pontos primeiro.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Após o fim do jogo, você pode iniciar uma nova partida do zero pelo botão <strong class="text-white">Restart Game</strong>, ou a qualquer momento durante uma partida pelo botão <strong class="text-white">Reset</strong> no canto superior esquerdo.
+      </p>
+    </section>
+
+    <!-- Section: Dicas e Estratégias -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Dicas e Estratégias</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Embora os Pokémon sejam sorteados aleatoriamente, existem padrões e conhecimentos que podem aumentar significativamente suas chances de vencer:
+      </p>
+
+      <div class="space-y-4">
+        <div class="border-l-2 border-green-500/50 pl-4 py-1">
+          <h3 class="text-white font-semibold text-sm mb-1">Conheça os tipos</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Pokémon do tipo Rocha e Aço têm Defesa altíssima. Tipos Luta e Dragão dominam no Ataque. Elétrico e Voador são os mais rápidos. Pokémon normais como Chansey e Snorlax lideram em HP. Usar esse conhecimento é a chave para escolher o atributo certo.</p>
+        </div>
+
+        <div class="border-l-2 border-green-500/50 pl-4 py-1">
+          <h3 class="text-white font-semibold text-sm mb-1">Observe o tipo do seu Pokémon</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Antes de escolher o atributo, preste atenção ao tipo exibido na carta. Um Pokémon do tipo Psíquico raramente será bom em Ataque físico, mas pode ter um HP ou Defesa acima da média. Um Pokémon do tipo Fogo costuma ter Ataque e Velocidade equilibrados.</p>
+        </div>
+
+        <div class="border-l-2 border-green-500/50 pl-4 py-1">
+          <h3 class="text-white font-semibold text-sm mb-1">Valores acima de 100 são fortes</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Na primeira geração, a base stats de 100 ou mais em qualquer atributo é considerada excepcional. Se você tiver 100 ou mais em um atributo, as chances de superar o adversário são altas. Abaixo de 50, a situação é mais arriscada — pode valer tentar outro atributo.</p>
+        </div>
+
+        <div class="border-l-2 border-green-500/50 pl-4 py-1">
+          <h3 class="text-white font-semibold text-sm mb-1">Calcule o risco</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Se o seu Pokémon tem atributos mediocres em tudo, avalie qual é o menos ruim. Às vezes, um HP de 75 pode ser suficiente para superar um adversário azarado. No pior caso, use o atributo mais alto disponível — mesmo sem certeza de vencer, é a jogada logicamente mais segura.</p>
+        </div>
+
+        <div class="border-l-2 border-green-500/50 pl-4 py-1">
+          <h3 class="text-white font-semibold text-sm mb-1">O computador joga aleatoriamente</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">O adversário controlado pelo computador recebe um Pokémon aleatório, mas não toma decisões estratégicas — os valores do Pokémon do computador são apenas revelados para comparação após sua escolha. Isso significa que, a longo prazo, um jogador estratégico tem vantagem sobre o aleatório do computador.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center bg-zinc-900/80 border border-zinc-800 rounded-2xl p-8">
+      <h2 class="text-xl font-black text-white italic mb-2">Pronto para jogar?</h2>
+      <p class="text-zinc-400 text-sm mb-5">Coloque seu conhecimento em prática e desafie o computador agora.</p>
+      <a href="/" class="inline-block px-8 py-3 bg-green-500 hover:bg-green-400 text-black font-black rounded-full uppercase tracking-widest text-sm transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]">
+        PLAY NOW
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-zinc-800 bg-zinc-900/80 backdrop-blur-md py-4 px-4 mt-10">
+    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-zinc-600 text-xs">
+        © 2026 <span class="text-zinc-400">Poke-Trunfo</span> · Desenvolvido por
+        <a href="https://github.com/igorsfugiwara" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:text-green-400 transition-colors">Igor Fugiwara</a>
+      </p>
+      <nav class="flex items-center gap-4">
+        <a href="/" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Jogar</a>
+        <a href="/sobre.html" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Sobre</a>
+        <a href="/como-jogar.html" class="text-xs text-green-500 uppercase tracking-wider font-semibold">Como Jogar</a>
+        <a href="/privacidade.html" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Privacidade</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

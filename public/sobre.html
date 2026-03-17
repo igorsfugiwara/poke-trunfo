@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre o PokéTrunfo — O jogo de cartas Pokémon</title>
+  <meta name="description" content="Conheça o PokéTrunfo: a fusão do clássico Super Trunfo com o universo Pokémon. Saiba como o jogo funciona, quem desenvolveu e quais tecnologias foram usadas." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1881797135791796" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #09090b; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #18181b; }
+    ::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white antialiased selection:bg-green-500 selection:text-black min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="h-14 bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-4 sticky top-0 z-40 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group">
+      <svg viewBox="0 0 100 100" class="w-6 h-6 text-green-500">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/>
+        <path d="M 5,50 L 95,50" stroke="currentColor" stroke-width="6"/>
+        <circle cx="50" cy="50" r="14" fill="currentColor"/>
+        <circle cx="50" cy="50" r="8" fill="#09090b"/>
+      </svg>
+      <span class="text-sm font-black tracking-tighter text-white italic group-hover:text-green-400 transition-colors">POKE-TRUNFO</span>
+    </a>
+    <a href="/" class="text-xs font-semibold text-green-500 hover:text-green-400 transition-colors border border-green-500/40 hover:border-green-500 px-3 py-1.5 rounded-full">
+      ← Jogar agora
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-3xl mx-auto w-full px-4 py-10">
+
+    <!-- Page Title -->
+    <div class="mb-10">
+      <h1 class="text-3xl md:text-5xl font-black text-white italic tracking-tighter leading-none mb-3">
+        Sobre o <span class="bg-green-500 text-black px-2 transform -skew-x-6 inline-block">PokéTrunfo</span>
+      </h1>
+      <p class="text-zinc-400 text-sm md:text-base">
+        A fusão perfeita entre o clássico Super Trunfo e o universo Pokémon.
+      </p>
+    </div>
+
+    <!-- Section: O que é o PokéTrunfo -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">O que é o PokéTrunfo?</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O <strong class="text-white">PokéTrunfo</strong> é um jogo de cartas digital que combina a mecânica do clássico <strong class="text-white">Super Trunfo</strong> — popularíssimo nas décadas de 80 e 90 — com os personagens e estatísticas do universo <strong class="text-white">Pokémon</strong>. A ideia é simples, mas altamente viciante: duas cartas de Pokémon são sorteadas aleatoriamente, e o jogador precisa escolher qual estatística do seu Pokémon tem um valor superior ao do oponente.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O Super Trunfo original era um jogo de baralho onde cada carta representava um elemento — carro, avião, animal ou time de futebol — e os jogadores comparavam atributos numéricos para decidir quem ganhava a rodada. O PokéTrunfo traz essa mesma dinâmica para o mundo digital, utilizando os dados reais dos Pokémon da primeira geração, buscados diretamente da <strong class="text-white">PokéAPI</strong>, a maior API pública de Pokémon do mundo.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Cada rodada é uma tomada de decisão estratégica: você analisa os atributos do seu Pokémon — Pontos de Vida (HP), Ataque, Defesa e Velocidade — e escolhe aquele em que acredita que seu Pokémon supera o do computador. A carta do adversário fica virada para baixo até você fazer a escolha, garantindo a tensão e o suspense de cada rodada. O primeiro a atingir 5 pontos vence o jogo.
+      </p>
+    </section>
+
+    <!-- Section: Como Jogar -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Como Jogar</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        Jogar o PokéTrunfo é intuitivo e rápido. Veja o passo a passo completo para dominar cada rodada:
+      </p>
+
+      <div class="space-y-4">
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4">
+          <h3 class="text-green-500 font-bold text-sm mb-2">1. Inicie o jogo</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Na tela inicial, clique em <strong class="text-white">PLAY NOW</strong>. O sistema irá buscar dois Pokémon aleatórios da primeira geração (os 151 originais) diretamente da PokéAPI. Um Pokémon será atribuído ao jogador e outro ao computador.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4">
+          <h3 class="text-green-500 font-bold text-sm mb-2">2. Analise sua carta</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Sua carta ficará visível com todos os atributos do Pokémon: <strong class="text-white">HP</strong> (Pontos de Vida), <strong class="text-white">Ataque</strong>, <strong class="text-white">Defesa</strong> e <strong class="text-white">Velocidade</strong>. A carta do computador estará virada para baixo — você não sabe quais são os valores do adversário antes de escolher.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4">
+          <h3 class="text-green-500 font-bold text-sm mb-2">3. Escolha seu atributo</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Toque ou clique no atributo em que você confia que seu Pokémon tem um valor maior. Por exemplo, se seu Pokémon tem 120 de HP, provavelmente é uma boa escolha. Se ele tem 110 de Ataque, talvez valha apostar nisso. A estratégia está em reconhecer as forças de cada tipo de Pokémon.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4">
+          <h3 class="text-green-500 font-bold text-sm mb-2">4. Veja o resultado</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Após sua escolha, a carta do computador é revelada. Os valores são comparados: quem tiver o maior número no atributo escolhido ganha o ponto. Em caso de empate, nenhum ponto é atribuído. O placar é atualizado automaticamente no topo da tela.
+          </p>
+        </div>
+
+        <div class="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4">
+          <h3 class="text-green-500 font-bold text-sm mb-2">5. Continue e vença</h3>
+          <p class="text-zinc-300 text-sm leading-relaxed">
+            Clique em <strong class="text-white">Next Round</strong> para buscar dois novos Pokémon e repetir o processo. O primeiro jogador a acumular <strong class="text-white">5 pontos</strong> vence a partida. Uma nova partida pode ser iniciada a qualquer momento pelo botão Reset no canto superior esquerdo.
+          </p>
+        </div>
+      </div>
+
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        A jornada é rápida — uma partida típica dura entre 3 e 10 minutos — mas cada decisão tem peso. Conhecer os tipos de Pokémon ajuda muito: Pokémon do tipo Luta costumam ter alto Ataque, Pokémon do tipo Rocha tendem a ter muita Defesa, e os do tipo Dragão geralmente são equilibrados com estatísticas altas em geral. Use esse conhecimento ao seu favor!
+      </p>
+    </section>
+
+    <!-- Section: Sobre o Projeto -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Sobre o Projeto</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O PokéTrunfo é um projeto pessoal desenvolvido por <strong class="text-white">Igor Fugiwara</strong>, desenvolvedor apaixonado por tecnologia e por Pokémon desde a infância. O projeto nasceu como uma forma de explorar o desenvolvimento de interfaces modernas com React e TypeScript, mas rapidamente se tornou algo que vale a pena compartilhar com qualquer pessoa que também cresceu com o Super Trunfo ou com o universo Pokémon.
+      </p>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O código-fonte está disponível publicamente no GitHub. Contribuições são bem-vindas — seja para melhorias de design, novas funcionalidades (como suporte a Pokémon de outras gerações ou um modo multiplayer) ou simplesmente para reportar bugs.
+      </p>
+      <a
+        href="https://github.com/igorsfugiwara/poke-trunfo"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-sm text-green-500 hover:text-green-400 border border-green-500/40 hover:border-green-500 px-4 py-2 rounded-full transition-all"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        Ver no GitHub
+      </a>
+    </section>
+
+    <!-- Section: Tecnologias -->
+    <section class="mb-10 space-y-4">
+      <h2 class="text-xl md:text-2xl font-bold text-white border-l-4 border-green-500 pl-4">Tecnologias Utilizadas</h2>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O PokéTrunfo foi construído com tecnologias modernas de desenvolvimento web, priorizando performance, experiência mobile e simplicidade de código.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">⚛️</div>
+          <div class="text-white font-bold text-sm">React 19</div>
+          <div class="text-zinc-500 text-xs mt-1">Interface reativa</div>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🟦</div>
+          <div class="text-white font-bold text-sm">TypeScript</div>
+          <div class="text-zinc-500 text-xs mt-1">Tipagem estática</div>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🎨</div>
+          <div class="text-white font-bold text-sm">Tailwind CSS</div>
+          <div class="text-zinc-500 text-xs mt-1">Estilização rápida</div>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-center">
+          <div class="text-2xl mb-2">🔴</div>
+          <div class="text-white font-bold text-sm">PokéAPI</div>
+          <div class="text-zinc-500 text-xs mt-1">Dados Pokémon</div>
+        </div>
+      </div>
+      <p class="text-zinc-300 text-sm md:text-base leading-relaxed">
+        O projeto usa o <strong class="text-white">Vite</strong> como bundler para builds rápidas e o <strong class="text-white">Lucide React</strong> para ícones minimalistas. A animação de virada de carta é feita com CSS 3D puro, sem bibliotecas de animação externas, resultando em uma experiência suave mesmo em dispositivos mais modestos.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-zinc-800 bg-zinc-900/80 backdrop-blur-md py-4 px-4 mt-auto">
+    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-zinc-600 text-xs">
+        © 2026 <span class="text-zinc-400">Poke-Trunfo</span> · Desenvolvido por
+        <a href="https://github.com/igorsfugiwara" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:text-green-400 transition-colors">Igor Fugiwara</a>
+      </p>
+      <nav class="flex items-center gap-4">
+        <a href="/" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Jogar</a>
+        <a href="/sobre.html" class="text-xs text-green-500 uppercase tracking-wider font-semibold">Sobre</a>
+        <a href="/como-jogar.html" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Como Jogar</a>
+        <a href="/privacidade.html" class="text-xs text-zinc-500 hover:text-white transition-colors uppercase tracking-wider">Privacidade</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

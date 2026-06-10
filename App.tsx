@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGameLogic } from './hooks/useGameLogic';
 import { useScrollDirection } from './hooks/useScrollDirection';
 import PokemonCard from './components/PokemonCard';
-import AdBanner from './components/AdBanner';
 import Button from './components/Button';
-import ContentSection from './components/ContentSection';
 import Footer from './components/Footer';
 import { GameState } from './types';
 import { Play, Zap, Trophy, Frown, RotateCcw } from 'lucide-react';
@@ -22,7 +20,6 @@ const App: React.FC = () => {
     resetGame 
   } = useGameLogic();
 
-  const [isAdExpanded, setIsAdExpanded] = useState(true);
   const scrollDirection = useScrollDirection();
 
   const headerClass = scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0';
@@ -84,7 +81,7 @@ const App: React.FC = () => {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col relative z-10 pt-14 pb-[30px]">
+      <main className="flex-1 flex flex-col relative z-10 pt-14">
         
         {/* Intro Screen */}
         {gameState === GameState.START && (
@@ -101,40 +98,12 @@ const App: React.FC = () => {
                     TRUNFO
                   </span>
                 </h2>
-                <p className="text-zinc-400 text-xs md:text-sm font-medium">
-                  Win the battle!
-                </p>
               </div>
               <Button onClick={startRound} className="w-full max-w-[200px] shadow-green-900/50 py-3 text-sm">
                 PLAY NOW
               </Button>
             </div>
 
-            {/* Editorial content section for SEO / AdSense */}
-            <div className="w-full max-w-lg text-left mt-2 pb-8 space-y-5">
-              <div className="border-t border-zinc-800 pt-6">
-                <h3 className="text-base font-bold text-white mb-3 italic tracking-tight">
-                  O que é PokéTrunfo?
-                </h3>
-                <p className="text-zinc-400 text-xs leading-relaxed mb-3">
-                  O <strong className="text-zinc-200">PokéTrunfo</strong> é um jogo de cartas digital que combina a mecânica do clássico <strong className="text-zinc-200">Super Trunfo</strong> com os personagens do universo Pokémon. Dois Pokémon são sorteados aleatoriamente a cada rodada — um para você e um para o computador — e você deve escolher qual atributo do seu Pokémon supera o do adversário.
-                </p>
-                <p className="text-zinc-400 text-xs leading-relaxed mb-3">
-                  Cada carta exibe quatro estatísticas reais da franquia Pokémon: <strong className="text-zinc-200">HP</strong> (pontos de vida), <strong className="text-zinc-200">Ataque</strong>, <strong className="text-zinc-200">Defesa</strong> e <strong className="text-zinc-200">Velocidade</strong>. Os dados são buscados em tempo real da PokéAPI, garantindo valores fiéis aos jogos originais da primeira geração (os 151 Pokémon clássicos do Game Boy).
-                </p>
-                <p className="text-zinc-400 text-xs leading-relaxed">
-                  A estratégia está em reconhecer as forças de cada Pokémon: tipos Luta e Dragão dominam em Ataque, tipos Rocha e Aço têm Defesa excepcional, e tipos Elétrico e Voador são imbatíveis em Velocidade. O primeiro a conquistar <strong className="text-zinc-200">5 pontos</strong> vence a partida. Simples de aprender, difícil de largar.
-                </p>
-              </div>
-              <div className="flex gap-3 flex-wrap">
-                <a href="/como-jogar.html" className="text-[10px] text-green-500 hover:text-green-400 border border-green-500/30 hover:border-green-500/60 px-3 py-1.5 rounded-full transition-all uppercase tracking-wider font-semibold">
-                  Como jogar →
-                </a>
-                <a href="/sobre.html" className="text-[10px] text-zinc-500 hover:text-zinc-300 border border-zinc-700 hover:border-zinc-600 px-3 py-1.5 rounded-full transition-all uppercase tracking-wider">
-                  Sobre o projeto
-                </a>
-              </div>
-            </div>
           </div>
         )}
 
@@ -174,7 +143,7 @@ const App: React.FC = () => {
             <div className="order-1 md:order-2 w-full md:w-auto h-[35vh] md:h-auto flex flex-col justify-end md:justify-center items-center relative z-10 pb-4 md:pb-0">
                <div className="relative w-full flex justify-center items-end md:items-center h-full">
                  {computerCard ? (
-                    <div className={`${isAdExpanded ? 'h-[70%]' : 'h-[90%]'} md:h-[340px] aspect-[2/3] md:w-[210px] transition-all duration-300`}>
+                    <div className="h-[90%] md:h-[340px] aspect-[2/3] md:w-[210px]">
                         <PokemonCard 
                           pokemon={computerCard} 
                           isHidden={gameState === GameState.PLAYER_TURN}
@@ -184,7 +153,7 @@ const App: React.FC = () => {
                         />
                     </div>
                   ) : (
-                    <div className={`${isAdExpanded ? 'h-[70%]' : 'h-[90%]'} md:h-[340px] md:w-[210px] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse mx-auto transition-all duration-300`} />
+                    <div className="h-[90%] md:h-[340px] md:w-[210px] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse mx-auto" />
                   )}
               </div>
             </div>
@@ -194,7 +163,7 @@ const App: React.FC = () => {
               ${gameState === GameState.RESULT ? 'md:translate-y-0' : ''}
             `}>
               {playerCard ? (
-                 <div className={`${isAdExpanded ? 'h-[75%]' : 'h-[90%]'} md:h-[400px] aspect-[2/3] md:w-[260px] flex justify-center transition-all duration-300`}>
+                 <div className="h-[90%] md:h-[400px] aspect-[2/3] md:w-[260px] flex justify-center">
                     <PokemonCard 
                       pokemon={playerCard} 
                       onStatSelect={handleStatSelection}
@@ -217,7 +186,7 @@ const App: React.FC = () => {
       {(gameState !== GameState.START && gameState !== GameState.GAME_OVER) && (
         <div 
           className="fixed left-0 w-full flex justify-center items-center pointer-events-none z-50 transition-all duration-300"
-          style={{ bottom: isAdExpanded ? '130px' : '80px' }}
+          style={{ bottom: '80px' }}
         >
           <div className="pointer-events-auto perspective-1000">
             
@@ -251,9 +220,7 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
-      <ContentSection />
       <Footer/>
-      <AdBanner isExpanded={isAdExpanded} onToggle={() => setIsAdExpanded(!isAdExpanded)} />
     </div>
   );
 };

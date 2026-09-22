@@ -88,7 +88,7 @@ const App: React.FC = () => {
         {/* Intro Screen */}
         {gameState === GameState.START && (
           <div className="flex flex-col items-center h-full text-center p-6 overflow-y-auto animate-fade-in">
-            <div className="flex flex-col items-center justify-center space-y-6 py-6">
+            <div className="pilha-tela flex flex-col items-center justify-center space-y-6 py-6">
               <div className="relative hover:scale-105 transition-transform duration-500 p-2">
                 <div className="absolute inset-0 bg-green-500 blur-2xl opacity-20 animate-pulse"></div>
                 <PokeballIcon />
@@ -111,7 +111,7 @@ const App: React.FC = () => {
 
         {/* Game Over Screen */}
         {gameState === GameState.GAME_OVER && (
-          <div className="flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
+          <div className="pilha-tela flex flex-col items-center justify-center h-full text-center p-6 space-y-6 animate-fade-in">
              <div className="relative p-4">
                 <div className={`absolute inset-0 blur-3xl opacity-30 ${score.player > score.computer ? 'bg-green-500' : 'bg-red-500'}`}></div>
                 {score.player > score.computer ? (

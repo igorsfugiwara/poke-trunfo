@@ -70,6 +70,41 @@
       */
       @media (max-height: 560px) {
         .indicador-vez { display: none; }
+
+        /*
+          A raiz do app é `overflow-hidden` de propósito — jogo não rola. Só
+          que as telas de abertura e de fim têm pokébola de 128 px, título de
+          60 px em duas linhas e botão: ~400 px numa tela de 343. O "PLAY NOW"
+          ficava abaixo do corte e sem rolagem para alcançá-lo. Aqui a pilha
+          inteira encolhe até caber.
+        */
+        /*
+          `!important` porque o Tailwind do CDN injeta o <style> dele DEPOIS
+          deste, e `space-y-6` / `flex-col` empatam ou ganham em
+          especificidade. Sem isso a regra é escrita e ignorada.
+        */
+        .pilha-tela > * + * { margin-top: 10px !important; }
+        .pilha-tela { padding-top: 4px !important; padding-bottom: 4px !important; }
+        .pilha-tela svg { width: 64px; height: 64px; }
+        .pilha-tela h2 { font-size: 30px; }
+      }
+
+      /*
+        Deitado sobra largura e falta altura: a pilha vira LINHA. Só encolher
+        não bastava — mesmo reduzida, a coluna passava dos ~340 px e o botão
+        continuava atrás do rodapé.
+      */
+      @media (orientation: landscape) and (max-height: 520px) {
+        .pilha-tela {
+          flex-direction: row !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 26px !important;
+          padding: 0 16px !important;
+        }
+        .pilha-tela > * + * { margin-top: 0 !important; }
+        .pilha-tela svg { width: 88px; height: 88px; }
+        .pilha-tela h2 { font-size: 34px; }
       }
     </style>
   <script type="importmap">

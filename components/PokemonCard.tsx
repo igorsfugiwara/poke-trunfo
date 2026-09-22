@@ -87,9 +87,12 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
             key={stat}
             onClick={() => onStatSelect && !disabled && onStatSelect(stat)}
             disabled={disabled}
-            className={`w-full flex items-center justify-between py-[1px] px-1.5 rounded transition-all h-[18px] md:h-[22px]
-              ${!disabled && onStatSelect 
-                ? 'hover:bg-white/20 cursor-pointer active:scale-95 bg-black/10' 
+            // `linha-atributo` leva a altura de dedo por tipo de ponteiro —
+            // ver a regra @media (pointer: coarse) no index.html. A altura
+            // Tailwind aqui é o caso do mouse.
+            className={`linha-atributo w-full flex items-center justify-between py-[1px] px-1.5 rounded transition-all h-[24px] md:h-[22px]
+              ${!disabled && onStatSelect
+                ? 'hover:bg-white/20 cursor-pointer active:scale-95 bg-black/10'
                 : 'cursor-default'
               }
               ${disabled && !onStatSelect ? 'opacity-90' : ''}
@@ -97,9 +100,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           >
             <div className="flex items-center gap-1.5 overflow-hidden">
               <div className="p-0.5 rounded bg-white/10 shrink-0">{getIcon(stat)}</div>
-              <span className="text-[8px] font-bold uppercase text-white/90 tracking-wider truncate leading-none pt-[1px]">{stat}</span>
+              <span className="text-[10px] md:text-[8px] font-bold uppercase text-white/90 tracking-wider truncate leading-none pt-[1px]">{stat}</span>
             </div>
-            <span className="text-[10px] md:text-xs font-black text-white leading-none">{pokemon.stats[stat]}</span>
+            <span className="text-[13px] md:text-xs font-black text-white leading-none">{pokemon.stats[stat]}</span>
           </button>
         ))}
       </div>

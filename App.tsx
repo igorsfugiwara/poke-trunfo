@@ -73,7 +73,9 @@ const App: React.FC = () => {
 
         {/* Right: Logo & Title */}
         <div className="flex items-center gap-2 z-20 relative">
-          <h1 className="text-sm md:text-base font-black tracking-tighter text-white italic leading-none">POKE-TRUNFO</h1>
+          {/* O placar é centralizado em absoluto; abaixo de 640 px o título
+              passava por cima dele. Some o texto e fica o raio, que é a marca. */}
+          <h1 className="hidden sm:block text-sm md:text-base font-black tracking-tighter text-white italic leading-none">POKE-TRUNFO</h1>
           <div className="bg-green-500 p-0.5 rounded">
              <Zap className="text-black w-4 h-4" />
           </div>
@@ -137,13 +139,13 @@ const App: React.FC = () => {
 
         {/* Game Area - Shown during play */}
         {(gameState !== GameState.START && gameState !== GameState.GAME_OVER) && (
-          <div className="flex flex-col md:flex-row md:items-center md:justify-center w-full h-[75vh] max-w-6xl mx-auto relative px-4 md:px-0 md:gap-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-center w-full h-[78vh] md:h-[75vh] max-w-6xl mx-auto relative px-4 md:px-0 md:gap-12">
             
             {/* OPPONENT CARD AREA */}
-            <div className="order-1 md:order-2 w-full md:w-auto h-[35vh] md:h-auto flex flex-col justify-end md:justify-center items-center relative z-10 pb-4 md:pb-0">
+            <div className="order-1 md:order-2 w-full md:w-auto h-[30vh] md:h-auto flex flex-col justify-end md:justify-center items-center relative z-10 pb-4 md:pb-0">
                <div className="relative w-full flex justify-center items-end md:items-center h-full">
                  {computerCard ? (
-                    <div className="h-[90%] md:h-[340px] aspect-[2/3] md:w-[210px]">
+                    <div className="h-[90%] md:h-[min(340px,58vh)] aspect-[2/3]">
                         <PokemonCard 
                           pokemon={computerCard} 
                           isHidden={gameState === GameState.PLAYER_TURN}
@@ -153,17 +155,17 @@ const App: React.FC = () => {
                         />
                     </div>
                   ) : (
-                    <div className="h-[90%] md:h-[340px] md:w-[210px] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse mx-auto" />
+                    <div className="h-[90%] md:h-[min(340px,58vh)] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse mx-auto" />
                   )}
               </div>
             </div>
 
             {/* PLAYER CARD AREA */}
-            <div className={`order-2 md:order-1 w-full md:w-auto h-[40vh] md:h-auto flex items-start md:items-center justify-center z-20 transition-all duration-700 ease-in-out
+            <div className={`order-2 md:order-1 w-full md:w-auto h-[48vh] md:h-auto flex items-start md:items-center justify-center z-20 transition-all duration-700 ease-in-out
               ${gameState === GameState.RESULT ? 'md:translate-y-0' : ''}
             `}>
               {playerCard ? (
-                 <div className="h-[90%] md:h-[400px] aspect-[2/3] md:w-[260px] flex justify-center">
+                 <div className="h-[90%] md:h-[min(400px,68vh)] aspect-[2/3] flex justify-center">
                     <PokemonCard 
                       pokemon={playerCard} 
                       onStatSelect={handleStatSelection}
@@ -174,7 +176,7 @@ const App: React.FC = () => {
                     />
                 </div>
               ) : (
-                 <div className="w-[80%] md:w-[260px] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse" />
+                 <div className="w-[80%] md:w-auto md:h-[min(400px,68vh)] aspect-[2/3] bg-zinc-900/50 rounded-xl border-2 border-dashed border-zinc-800 animate-pulse" />
               )}
             </div>
 
@@ -194,7 +196,10 @@ const App: React.FC = () => {
             <div className={`relative transition-transform duration-500 transform-style-3d ${gameState === GameState.RESULT ? 'rotate-x-180' : ''}`}>
               
               {/* Front Face: YOUR TURN (Indicator Only) */}
-              <div className="backface-hidden">
+              {/* `pointer-events-none`: é aviso, não botão — e o pai reativa o
+                  ponteiro para o "Next Round" da outra face. Sem isto ele
+                  roubava o toque do atributo que ficasse embaixo dele. */}
+              <div className="backface-hidden pointer-events-none indicador-vez">
                  <div className="px-5 py-2 bg-green-500 text-black font-black text-xs rounded-full shadow-[0_0_15px_rgba(34,197,94,0.6)] animate-pulse flex items-center gap-2">
                     YOUR TURN
                   </div>

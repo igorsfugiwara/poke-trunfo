@@ -51,6 +51,26 @@
       .rotate-x-180 {
         transform: rotateX(180deg);
       }
+
+      /*
+        Escolher o atributo é a única jogada do jogo, e o alvo era de 18 px.
+        As classes `md:` do Tailwind medem LARGURA: um celular deitado tem
+        844 px e cairia na regra de desktop — de volta ao alvo pequeno, no
+        aparelho onde ele é pior. Quem decide aqui é o tipo de ponteiro.
+      */
+      @media (pointer: coarse) {
+        .linha-atributo { height: 34px !important; }
+      }
+
+      /*
+        Celular deitado: sobram 390 px de altura e o selo "YOUR TURN" flutua
+        em cima da carta, cobrindo o último atributo. Ele só repete o óbvio —
+        a carta do jogador é a que está virada para cima. O "Next Round", que
+        é a outra face do mesmo elemento e é botão de verdade, continua.
+      */
+      @media (max-height: 560px) {
+        .indicador-vez { display: none; }
+      }
     </style>
   <script type="importmap">
 {

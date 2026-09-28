@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
                 <p className="text-zinc-600 text-[10px] font-medium">
                     © 2026 <span className="text-zinc-400">Poke-Trunfo</span> · Desenvolvido por{' '}
                     <a
-                        href="https://github.com/igorsfugiwara"
+                        href="https://igorfugiwara.netlify.app/pt/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-green-500 hover:text-green-400 transition-colors"

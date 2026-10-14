@@ -4,6 +4,7 @@ import { useScrollDirection } from './hooks/useScrollDirection';
 import PokemonCard from './components/PokemonCard';
 import Button from './components/Button';
 import Footer from './components/Footer';
+import TutorialJogado from './components/TutorialJogado';
 import { GameState } from './types';
 import { Play, Zap, Trophy, Frown, RotateCcw } from 'lucide-react';
 
@@ -101,7 +102,7 @@ const App: React.FC = () => {
                   </span>
                 </h2>
               </div>
-              <Button onClick={startRound} className="w-full max-w-[200px] shadow-green-900/50 py-3 text-sm">
+              <Button onClick={startRound} data-tut="jogar" className="w-full max-w-[200px] shadow-green-900/50 py-3 text-sm">
                 PLAY NOW
               </Button>
             </div>
@@ -214,6 +215,7 @@ const App: React.FC = () => {
 
                   <button 
                     onClick={startRound}
+                    data-tut="proxima"
                     className="group relative px-8 py-3 bg-zinc-900 hover:bg-green-500 border border-green-500 text-green-500 hover:text-black rounded-full font-black uppercase tracking-widest transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] active:scale-95 flex items-center gap-2 text-xs whitespace-nowrap"
                   >
                     <span>Next Round</span>
@@ -226,6 +228,7 @@ const App: React.FC = () => {
         </div>
       )}
       <Footer/>
+      <TutorialJogado gameState={gameState} playerCard={playerCard} />
     </div>
   );
 };

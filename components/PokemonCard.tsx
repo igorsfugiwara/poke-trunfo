@@ -86,6 +86,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           <button
             key={stat}
             onClick={() => onStatSelect && !disabled && onStatSelect(stat)}
+            data-stat={onStatSelect ? stat : undefined}
             disabled={disabled}
             // `linha-atributo` leva a altura de dedo por tipo de ponteiro —
             // ver a regra @media (pointer: coarse) no index.html. A altura
